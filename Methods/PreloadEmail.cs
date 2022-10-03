@@ -38,7 +38,7 @@ namespace EmailSend.Methods
             string emailAddress = "denis@email.com";
 
             //here put your password
-            string password = "your password or aplication pasword";
+            string password = "your password or application password";
 
             SmtpClient client = new SmtpClient();
             ExceptionHandling.TryCatch(message, emailAddress, password, client, mailType, port);

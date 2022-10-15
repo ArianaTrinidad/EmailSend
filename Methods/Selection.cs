@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmailSend.Methods
 {
-    public class SecondSelection
+    public class Selection
     {
-        public static void ChoosingEmailFormat(string mailType, int port)
+        public static void ChoosingEmailFormat()
         {
             Console.WriteLine("Choose a opction\n1) Send a email preload\n2) Send a email personalized");
             var firstMenu = Convert.ToInt32(Console.ReadLine());
@@ -19,12 +15,17 @@ namespace EmailSend.Methods
 
                 for (int i = 1; i <= secondMenu; i++)
                 {
-                   PreloadEmail.SendPreloadEmail(mailType, port);
+                   PreloadEmail.SendPreloadEmail();
                 }
             }
             else if (firstMenu == 2)
             {
-                PersonalizedEmail.SendPersonalizedMail(mailType, port);
+                PersonalizedEmail.SendPersonalizedMail();
+            }
+            else
+            {
+                Console.WriteLine("Please choose a valid option");
+                ChoosingEmailFormat();
             }
         }
     }

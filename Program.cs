@@ -7,8 +7,7 @@ namespace EmailSend
     {
         static void Main(string[] args)
         {
-            FirstSelection.ChoosingEmailType();
-            Console.ReadLine();
+            Selection.ChoosingEmailFormat();
         }
     }
 }

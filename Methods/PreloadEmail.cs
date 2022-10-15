@@ -10,20 +10,21 @@ namespace EmailSend.Methods
 {
     public class PreloadEmail
     {
-        public static void SendPreloadEmail(string mailType, int port)
+        public static void SendPreloadEmail()
         {
             Console.WriteLine("Destination Mail");
             var destinationEmail = Console.ReadLine();
 
-            //here put you subject
-            var subjectEmail = "your subject";
+            ///here put your subject
+            var subjectEmail = "subject";
 
-            var messageEmail = "your message";
+            ///here put your message
+            var messageEmail = "you";
 
             MimeMessage message = new MimeMessage();
 
-            //change for you email and name/Bussines Name 
-            message.From.Add(new MailboxAddress("Denis", "denis@email.com"));
+            ///change for you email and name/Bussines Name 
+            message.From.Add(new MailboxAddress("Name", "email@typeemail.com"));
 
             message.To.Add(MailboxAddress.Parse($"{destinationEmail}"));
 
@@ -34,14 +35,20 @@ namespace EmailSend.Methods
                 Text = messageEmail
             };
 
-            //change for you email
-            string emailAddress = "denis@email.com";
+            ///change for your email
+            string emailAddress = "email@typeemail.com";
 
-            //here put your password
-            string password = "your password or application password";
+            ///here put your password
+            string password = "password";
+
+            ///change for your client port
+            int port = 101;
+
+            ///change for your smtp client
+            string emailType = "smtp.client.com";
 
             SmtpClient client = new SmtpClient();
-            ExceptionHandling.TryCatch(message, emailAddress, password, client, mailType, port);
+            ExceptionHandling.TryCatch(message, emailAddress, password, client, emailType, port);
         }
     }
 }

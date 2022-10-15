@@ -10,7 +10,7 @@ namespace EmailSend.Methods
 {
     public class PersonalizedEmail
     {
-        public static void SendPersonalizedMail(string mailType, int port)
+        public static void SendPersonalizedMail()
         {
             Console.WriteLine("Destination Mail");
             var destinationEmail = Console.ReadLine();
@@ -25,15 +25,19 @@ namespace EmailSend.Methods
             var displayName = Console.ReadLine();
 
             Console.WriteLine("Source Mail");
-            var surceMail = Console.ReadLine();
+            var sourceMail = Console.ReadLine();
 
             Console.WriteLine("Password of Mail (if you use gmail you need the application pasword)");
             var password = Console.ReadLine();
 
+            int port;
+            string emailType;
+
+            TypeSelector(sourceMail, out port, out emailType);
 
             MimeMessage message = new MimeMessage();
 
-            message.From.Add(new MailboxAddress($"{displayName}", $"{surceMail}"));
+            message.From.Add(new MailboxAddress($"{displayName}", $"{sourceMail}"));
 
             message.To.Add(MailboxAddress.Parse($"{destinationEmail}"));
 
@@ -45,7 +49,28 @@ namespace EmailSend.Methods
             };
 
             SmtpClient client = new SmtpClient();
-            ExceptionHandling.TryCatch(message, surceMail, password, client, mailType, port);
+            ExceptionHandling.TryCatch(message, sourceMail, password, client, emailType, port);
+        }
+
+        private static void TypeSelector(string sourceMail, out int port, out string emailType)
+        {
+            if (sourceMail.Contains("@gmail"))
+            {
+                port = 465;
+                emailType = "smtp.gmail.com";
+            }
+            else if (sourceMail.Contains("@hotmail"))
+            {
+                port = 587;
+                emailType = "smtp-mail.outlook.com";
+            }
+            else
+            {
+                port = default;
+                emailType = default;
+                Console.WriteLine("The email type is invalid, try again");
+                SendPersonalizedMail();
+            }
         }
     }
 }

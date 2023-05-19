@@ -18,13 +18,13 @@ namespace EmailSend.Methods
                 client.Authenticate(emailAddress, password);
                 client.Send(message);
 
-                Console.WriteLine("Email sent");
+                Console.WriteLine("\nEmail sent");
                 Console.ReadLine();
             }
             catch (Exception ex)
             {
 
-                Console.WriteLine($"Email wasn't send beacuse {ex.Message}");
+                Console.WriteLine($"\nEmail wasn't send beacuse {ex.Message}");
                 Console.ReadLine();
             }
             finally

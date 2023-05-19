@@ -28,7 +28,7 @@ namespace EmailSend.Methods
             var sourceMail = Console.ReadLine();
 
             Console.WriteLine("Password of Mail (if you use gmail you need the application pasword)");
-            var password = Console.ReadLine();
+            var password = HidePassword();
 
             int port;
             string emailType;
@@ -71,6 +71,27 @@ namespace EmailSend.Methods
                 Console.WriteLine("The email type is invalid, try again");
                 SendPersonalizedMail();
             }
+        }
+        private static string HidePassword()
+        {
+            List<string> FisrtPass = new List<string>();
+            while (true)
+            {
+                var keyboard = Console.ReadKey(true);
+                if (keyboard.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                FisrtPass.Add(Convert.ToString(keyboard.KeyChar));
+                Console.Write("*");
+            }
+            string data = "";
+
+            for (int i = 0; i < FisrtPass.Count(); i++)
+            {
+                data += FisrtPass[i];
+            }
+            return data;
         }
     }
 }
